@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>protocol | reallocvoid</title>
+  <meta name="author" content="xuangong">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="reallocvoid"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/feed.xml" title="reallocvoid" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">reallocvoid</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title tag">protocol</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-09T02:41:19.000Z"><a href="/2014/07/09/simulate-smtp/">7月 9 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/09/simulate-smtp/">模拟smtp协议</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>动手写邮件发送的程序之前，第一步让我们来模拟一下smtp协议的过程来发送一份邮件。</p>
+<p>下面简单演示一下如何用telnet来模拟smtp协议发送一份邮件</p>
+<ol>
+<li>找到一个可用的smtp server的ip地址，当前我得到的163邮箱的smtp server的ip地址是220.181.12.16</li>
+<li>telnet和smtp server的25端口建立tcp连接，<code>telnet 220.181.12.16 25</code>，收到的回应是&quot;220 163.com Anti-spam GT for Coremail System (163com[20121016])&quot;</li>
+<li>发送<code>HELO 220.181.12.16</code>，收到回应&quot;250 OK&quot;</li>
+<li>请求登录，发送<code>auth login</code>，收到回应“334 dXNlcm5hbWU6”，后面那串字母是被base64加密后的内容，解密后的实际内容是：&quot;username:&quot;</li>
+<li>发送自己163邮箱的用户名base64加密后的内容，比如我的email地址是&quot;zhang_xian_freedom@163.com&quot;，我的username就是&quot;zhang_xian_freedom&quot;，所以我发送的内容是：<code>emhhbmdfeGlhbl9mcmVlZG9t</code>。收到回应：334 UGFzc3dvcmQ6&quot;，解密后的实际内容是：&quot;Password:&quot;</li>
+<li>发送自己用户名对应的密码用base64加密后的内容，收到回应：&quot;235 Authentication successful&quot;。到此，跟mail server身份验证的工作已经结束。</li>
+<li>跟smpt服务器指定邮件的来处：<code>mail from:&lt;zhang_xian_freedom@163.com&gt;</code>，收到回应：&quot;250 Mail OK&quot;</li>
+<li>跟smpt服务器指定要发送的邮件去处：<code>rcpt to:&lt;zhangxian1124@bupt.edu.cn&gt;</code>，收到回应：&quot;250 Mail OK&quot;</li>
+<li>发送邮件正文内容标识：<code>data</code>，收到回应：<code>354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;</code></li>
+<li>邮件中显示的发给谁：<code>to:zhangxian1124@bupt.edu.cn</code>和<code>subject:Test Mail</code></li>
+<li>发送一个空行，然后发送邮件正文<code>This is a test mail...</code></li>
+<li>发送<code>.</code>标识结束
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/07/09/simulate-smtp/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/DP/">DP</a><small>1</small></li>
+  
+    <li><a href="/tags/algorithm/">algorithm</a><small>5</small></li>
+  
+    <li><a href="/tags/c/">c</a><small>1</small></li>
+  
+    <li><a href="/tags/data structure/">data structure</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/personal/">personal</a><small>1</small></li>
+  
+    <li><a href="/tags/protocol/">protocol</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 xuangong
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ucc中的奇技淫巧（持续更新） | reallocvoid</title>
+  <meta name="author" content="xuangong">
+  
+  <meta name="description" content="对ucc——代码挺好看的一个c98编译器的naive记录...别瞎折腾，没什么用^_^
+1.初始化寄存器变量的时候，寄存器是用enum类型来表示的:
+
+enum { EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI };
+申明数组大小的时候这么如：Symbol X86Regs[EDI + 1];这样以后要跟新这个列表，只要大小写保持是enum的最后一个就可以了。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="ucc中的奇技淫巧（持续更新）"/>
+  <meta property="og:site_name" content="reallocvoid"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/feed.xml" title="reallocvoid" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">reallocvoid</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-22T17:13:10.000Z"><a href="/2014/05/23/ucc中的奇技淫巧/">5月 23 2014</a></time>
+      
+      
+  
+    <h1 class="title">ucc中的奇技淫巧（持续更新）</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="-ucc-c98-naive-_-">对ucc——代码挺好看的一个c98编译器的naive记录...别瞎折腾，没什么用^_^</h2>
+<h3 id="1-enum-">1.初始化寄存器变量的时候，寄存器是用enum类型来表示的:</h3>
+<hr>
+<p><code>enum { EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI };</code></p>
+<p>申明数组大小的时候这么如：<code>Symbol X86Regs[EDI + 1];</code>这样以后要跟新这个列表，只要大小写保持是enum的最后一个就可以了。
+<a id="more"></a></p>
+<h3 id="2-">2.词法器的初始化：</h3>
+<hr>
+<p>搞了一个256大小的数组，存储函数指针，是为了直接把字符的ASCII码当成数组下标，256个下标对应的类型分成一下四类：</p>
+<pre><code>- 语言中的符号` &#39; &quot; + - * / % &lt; &gt; = ! | &amp; ^ . { } ( ) [ ] , ; ~ ? : `加上`END_OF_FILE`
+- 字母
+- 数字
+- 其它（不认识的字符，就可以抛出错误了）
+</code></pre><p>注意：注意后面三类其实每一类的处理函数是一样的。第一类又可以分为两类：<code>{ } ( ) [ ] , ; ~ ? :</code>处理过程类似，移动读入指针和返回对应的token；其它的处理方式要单独写。</p>
+<h3 id="3-">3.静态的组织表格的方法：</h3>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">enum</span> token
+{
+  TK_BEGIN,
+  <span class="preprocessor">#<span class="keyword">define</span> TOKEN(k, s) k,</span>
+  <span class="preprocessor">#include "token.h"</span>
+  <span class="preprocessor">#<span class="keyword">undef</span>  TOKEN</span>
+};
+</pre></td></tr></table></figure>
+
+<p>token.h中截了三行，这样就可以想要取哪列都可以了，很清楚</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="function">TOKEN(TK_VOLATILE,  <span class="string">"volatile"</span>)</span>
+<span class="function">TOKEN(TK_SIGNED,    <span class="string">"signed"</span>)</span>
+<span class="function">TOKEN(TK_UNSIGNED,  <span class="string">"unsigned"</span>)</span>
+</pre></td></tr></table></figure>
+
+<h3 id="4-linux-">4.在处理内存对齐的时候有一个宏很有意思，在linux中常见：</h3>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>#define ALIGN(<span class="keyword">size</span>, <span class="keyword">align</span>) ((<span class="keyword">size</span> + <span class="keyword">align</span> - <span class="number">1</span>) & (~(<span class="keyword">align</span> - <span class="number">1</span>)))
+</pre></td></tr></table></figure>
+
+<p>记录一下这么搞的原理：<code>ALIGN(size, align)的得到的值，是size按照以align为倍数取上界</code></p>
+<p>align如果值是8，则~(align-1)的值就是111...111000，这就是按照倍数取得上下界的关键，可称为对齐掩码。
+先看这个式子</p>
+<p><code>size &amp; ~(align-1)</code>表示的就是按照align的倍数取<code>下界</code>，这个很容易理解。再想怎么样才能定上界呢？其实有个非常容易想到的做法，就是加上align，但是这么做的bad case就是size本身就正好是align的倍数，这么做就错了，当然可以做判断修正这个bad case，同样也可以利用~(align-1)来修正，就得到了(size + size - 1) &amp; (~(align - 1))</p>
+<h3 id="5-ucc-">5.这个技巧不是ucc中看到的，但是值得一说</h3>
+<hr>
+<ol>
+<li><code>#define IS_POWER_OF_2(x) (!((x)&amp;((x)-1)))</code> 只有x是2的幂次的时候，这个表达式才是真</li>
+<li>凑2的次幂取size的上界，代码和注释如下<figure class="highlight c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="comment">/**
+ * 把size调整到向上取到最近的2次幂
+ * size |= size &gt;&gt; n;表示从低位到高位按2n位分组,每组内高n位复制到低n位
+ * 最后经过处理size是从最高位的1开始往低位全1的整数
+ * return size + 1; 得到向上凑够最近2次幂
+ */</span>
+<span class="keyword">static</span> <span class="keyword">unsigned</span> fixsize(<span class="keyword">unsigned</span> size) {
+  size |= size &gt;&gt; <span class="number">1</span>;
+  size |= size &gt;&gt; <span class="number">2</span>;
+  size |= size &gt;&gt; <span class="number">4</span>;
+  size |= size &gt;&gt; <span class="number">8</span>;
+  size |= size &gt;&gt; <span class="number">16</span>;
+  <span class="keyword">return</span> size+<span class="number">1</span>;
+}
+</pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="6-ucc-">6.ucc中内存的管理是维护了一个链表</h3>
+<hr>
+<p>这个模型非常简单，就是一个单向链表，链表记录了begin，end，avail三个指针，如果不够用了，就再申请大块的内存；够用了就直接从维护的堆上拿。
+这样做的好处就是可以一直申请内存不释放，到最后一并把堆释放了就妥妥的。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/c/">c</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2014/05/23/ucc中的奇技淫巧/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/DP/">DP</a><small>1</small></li>
+  
+    <li><a href="/tags/algorithm/">algorithm</a><small>5</small></li>
+  
+    <li><a href="/tags/c/">c</a><small>1</small></li>
+  
+    <li><a href="/tags/data structure/">data structure</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/personal/">personal</a><small>1</small></li>
+  
+    <li><a href="/tags/protocol/">protocol</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 xuangong
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>reallocvoid</title>
+  <meta name="author" content="xuangong">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="reallocvoid"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/feed.xml" title="reallocvoid" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">reallocvoid</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-09T02:41:19.000Z"><a href="/2014/07/09/simulate-smtp/">7月 9 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/09/simulate-smtp/">模拟smtp协议</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>动手写邮件发送的程序之前，第一步让我们来模拟一下smtp协议的过程来发送一份邮件。</p>
+<p>下面简单演示一下如何用telnet来模拟smtp协议发送一份邮件</p>
+<ol>
+<li>找到一个可用的smtp server的ip地址，当前我得到的163邮箱的smtp server的ip地址是220.181.12.16</li>
+<li>telnet和smtp server的25端口建立tcp连接，<code>telnet 220.181.12.16 25</code>，收到的回应是&quot;220 163.com Anti-spam GT for Coremail System (163com[20121016])&quot;</li>
+<li>发送<code>HELO 220.181.12.16</code>，收到回应&quot;250 OK&quot;</li>
+<li>请求登录，发送<code>auth login</code>，收到回应“334 dXNlcm5hbWU6”，后面那串字母是被base64加密后的内容，解密后的实际内容是：&quot;username:&quot;</li>
+<li>发送自己163邮箱的用户名base64加密后的内容，比如我的email地址是&quot;zhang_xian_freedom@163.com&quot;，我的username就是&quot;zhang_xian_freedom&quot;，所以我发送的内容是：<code>emhhbmdfeGlhbl9mcmVlZG9t</code>。收到回应：334 UGFzc3dvcmQ6&quot;，解密后的实际内容是：&quot;Password:&quot;</li>
+<li>发送自己用户名对应的密码用base64加密后的内容，收到回应：&quot;235 Authentication successful&quot;。到此，跟mail server身份验证的工作已经结束。</li>
+<li>跟smpt服务器指定邮件的来处：<code>mail from:&lt;zhang_xian_freedom@163.com&gt;</code>，收到回应：&quot;250 Mail OK&quot;</li>
+<li>跟smpt服务器指定要发送的邮件去处：<code>rcpt to:&lt;zhangxian1124@bupt.edu.cn&gt;</code>，收到回应：&quot;250 Mail OK&quot;</li>
+<li>发送邮件正文内容标识：<code>data</code>，收到回应：<code>354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;</code></li>
+<li>邮件中显示的发给谁：<code>to:zhangxian1124@bupt.edu.cn</code>和<code>subject:Test Mail</code></li>
+<li>发送一个空行，然后发送邮件正文<code>This is a test mail...</code></li>
+<li>发送<code>.</code>标识结束
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/07/09/simulate-smtp/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-30T16:53:43.000Z"><a href="/2014/07/01/skiplist/">7月 1 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/01/skiplist/">理解跳跃表skiplist</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>跳跃表是一种随机化数据结构，基于<strong>并联的链表</strong>，其效率可以逼近二叉查找树，对于大多数操作需要O(logn)平均时间，并且对<strong>并发</strong>算法友好。
+跳跃表对<strong>有序</strong>链表增加附加的前进链接，增加（Insert）是以随机化的方式进行的，所以可以快速的跳过部分列表，故以此得名。
+她是很年轻的算法而且实现简单，深受广大程序员喜爱。</p>
+</blockquote>
+<p>需要动态维护数据，有对数复杂度的插入、删除和查找性能，可以选择的数据结构很多，比如：</p>
+<ul>
+<li>B-tree</li>
+<li>Red-black tree</li>
+<li>treap</li>
+</ul>
+<p>如果要求一个小时完成程序，竟然还不给我们翻书，那咱们选择谁呢？OK，答案是我们今天的主人公：跳跃表skiplist</p>
+<p>跳跃表按层构造的，让我们看一下redis中跳跃表的数据结构(<a href="http://github.com/antirez/redis/blob/unstable/src/redis.h" target="_blank">redis.h</a>)：
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/07/01/skiplist/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-27T17:43:59.000Z"><a href="/2014/06/28/find-the-special-num/">6月 28 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/06/28/find-the-special-num/">由一道寻找唯一数字的题想到的</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近本科室友发消息来问了一道题，引发了我一连串的好奇心。</p>
+<p>P.S. 据师兄说这类问题貌似某书上有说过，可是已经不记得了，汗。。只怪肚子里的墨水太少，事实证明我这种庸人就应该事儿多^_^！</p>
+<h3 id="1-">1.有很多数字，其中两两一样，只有一个数字不同，找出这个数字？</h3>
+<hr>
+<p>可以把让每个数字按位异或，最后得到的就是那个数字，这个是很基础的想法。时间复杂度O(n)，空间是O(1)，not bad.
+扩展**
+2.如果有两个数字是唯一的，怎么找出这两个数字？</p>
+<hr>
+<p>处理两遍，第一遍先按位异或，最后肯定得到的是一个不为零的数字，然后按照一个不为零的bit来划分所有的整数，得到两个集合，每个集合都符合<strong>第1题</strong>的情况，分别对两个集合处理，就能找到这两个数字。
+继续扩展**
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/06/28/find-the-special-num/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-30T18:28:15.000Z"><a href="/2014/05/31/damn-line-end-character/">5月 31 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/31/damn-line-end-character/">Damn Line End Character</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这是在跨平台编辑代码的时候遇到的蛋疼问题。shell文件从dropbox同步到win上看一看再同步回mac，擦，执行的时候抽风了！</p>
+<p>作为一个无知且不天真的低级码农，碰到这个诡异的问题不能忍，搞清楚了记一下。</p>
+<p>vim认为win、unix和mac三大平台的换行符都不一样，分别是CRLF、LF和CR。尼玛，这个排列组合能再彻底一点吗？当然这个有历史原因，不过还是要说，尼玛！
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/05/31/damn-line-end-character/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-22T17:13:10.000Z"><a href="/2014/05/23/ucc中的奇技淫巧/">5月 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/23/ucc中的奇技淫巧/">ucc中的奇技淫巧（持续更新）</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="-ucc-c98-naive-_-">对ucc——代码挺好看的一个c98编译器的naive记录...别瞎折腾，没什么用^_^</h2>
+<h3 id="1-enum-">1.初始化寄存器变量的时候，寄存器是用enum类型来表示的:</h3>
+<hr>
+<p><code>enum { EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI };</code></p>
+<p>申明数组大小的时候这么如：<code>Symbol X86Regs[EDI + 1];</code>这样以后要跟新这个列表，只要大小写保持是enum的最后一个就可以了。
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/05/23/ucc中的奇技淫巧/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-22T16:00:01.000Z"><a href="/2014/05/23/string hash methods/">5月 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/23/string hash methods/">常见的字符串Hash算法列举</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>常见的字符串Hash算法如下，ucc中对符号表使用的是ELFHash，查了一下貌似不是效果非常好的hash算法。也列一列常用的hash算法以备不时之需。
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/05/23/string hash methods/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-03T16:16:35.000Z"><a href="/2014/05/04/动态规划_DP总结/">5月 4 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/04/动态规划_DP总结/">关于动态规划（DP）的一点心得</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="-">概述：了解动态规划</h3>
+<hr>
+<p>动态规划算法一般都是基于一个递推公式和一组初始状态，当前子问题解将由上一次子问题的解推出，也就是传说中的（全局最优解包含局部最优解）一般用DP求解一个问题只需要多项式时间复杂度，因此要比回溯法和暴力求解法要快很多。</p>
+<p>所以：我们需要求解一个状态的最优解，然后在它的帮助下找到下一个状态的最优解（注意这里是帮助，推出下一个状态的最优解，不一定依靠一个子问题的最优解，可能是一组状态的最优解进行筛选）
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/05/04/动态规划_DP总结/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-02T16:20:35.000Z"><a href="/2014/05/03/dijkstra-shortest-path/">5月 3 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/05/03/dijkstra-shortest-path/">Dijkstra Shortest Path</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="-">五一要过去了，这个学期真是快</h3>
+<hr>
+<p>没回家，没出去玩儿，没什么要紧的事情要做，又比较懒，啥都不想干，闲的无聊，随手撸一个最短路径，好久没写过算法问题了，还得找一下数据结构的书来看一下。ok，合上书，整理一下思路，开始撸。。。</p>
+<p>用邻接表和邻接矩阵都行，简单点就矩阵吧，我们假设就5个节点找一下单源最短路径问题。</p>
+<p>想法非常简单，关键的地方就在于更新当前最短的距离，其实小心点很容易。</p>
+<p>分析过程是：</p>
+<ul>
+<li><p>单步的增加搜索的范围，每次都能确定对一个点的最短路径，因为在当前步数范围内全局最短的那个节点，是不可能通过增加步数绕道缩短距离的。</p>
+</li>
+<li><p>每一步中，选出当前全局最短的节点加入S集合，表明该节点的最短路径已经找到。并且，更新各个节点的最短距离（更新时比较通过当前选出的节点到达的路径，因为考虑再扩大一步以后，固定下一个最短距离的路径肯定要是<code>节点本身到源点的直接路径或者通过已经在S集合中的点到达的路径</code>）</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/05/03/dijkstra-shortest-path/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-02-23T10:10:47.000Z"><a href="/2014/02/23/second-semester-plan/">2月 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/02/23/second-semester-plan/">总结&amp;计划</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="-">上学期总结和下学期规划一览</h2>
+<h3 id="-">入学</h3>
+<p>考研的分数不是太高，只能勉强过组线，所以提前不少时间就开始准备联系导师和准备复试了，基本上每个老师都发了简历，但是不是每个老师都回了。<del>感谢那些亲自回学生邮件并给出中肯建议的老师们，怀念方SIR回邮件的速度</del>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/02/23/second-semester-plan/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-02-23T09:13:11.000Z"><a href="/2014/02/23/hello-world/">2月 23 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/02/23/hello-world/">Hello World</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近有点时间想来搞一下自己的博客，原来的博客在cnblogs上，基本上没兴趣写啊。wordpress太重了，随着github pages这样的机制越来越顺手，还是弄一个纯静态的博客吧，简单易用靠谱，简单调查一下，还是用hexo吧，使用部署很简单，插件也多。寝室的网络太差，看在不要钱的份儿上就不吐槽了，装个node下了半天，擦~</p>
+<p>神奇的<em><code>hello world</code></em>闪亮登场，噹噹噹噹！</p>
+<p>能用markdown写博客，舒服好多，赶紧用上Mou，神器就是神奇，写这段文字的时候激动的泪流满面啊！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/DP/">DP</a><small>1</small></li>
+  
+    <li><a href="/tags/algorithm/">algorithm</a><small>5</small></li>
+  
+    <li><a href="/tags/c/">c</a><small>1</small></li>
+  
+    <li><a href="/tags/data structure/">data structure</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/personal/">personal</a><small>1</small></li>
+  
+    <li><a href="/tags/protocol/">protocol</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 xuangong
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
