@@ -3,9 +3,9 @@
   <title><![CDATA[reallocvoid]]></title>
   
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2014-09-22T14:57:30.436Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://zhangxian.me/"/>
+  <updated>2014-10-10T06:42:04.190Z</updated>
+  <id>http://zhangxian.me/</id>
   
   <author>
     <name><![CDATA[xuangong]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[模拟smtp协议]]></title>
-    <link href="http://yoursite.com/2014/07/09/simulate-smtp/"/>
-    <id>http://yoursite.com/2014/07/09/simulate-smtp/</id>
+    <link href="http://zhangxian.me/2014/07/09/simulate-smtp/"/>
+    <id>http://zhangxian.me/2014/07/09/simulate-smtp/</id>
     <published>2014-07-09T02:41:19.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<p>动手写邮件发送的程序之前，第一步让我们来模拟一下smtp协议的过程来发送一份邮件。</p>
@@ -62,14 +62,14 @@
     
     </summary>
     
-      <category term="protocol" scheme="http://yoursite.com/tags/protocol/"/>
+      <category term="protocol" scheme="http://zhangxian.me/tags/protocol/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[理解跳跃表skiplist]]></title>
-    <link href="http://yoursite.com/2014/07/01/skiplist/"/>
-    <id>http://yoursite.com/2014/07/01/skiplist/</id>
+    <link href="http://zhangxian.me/2014/07/01/skiplist/"/>
+    <id>http://zhangxian.me/2014/07/01/skiplist/</id>
     <published>2014-06-30T16:53:43.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
@@ -258,16 +258,16 @@
     
     </summary>
     
-      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://zhangxian.me/tags/algorithm/"/>
     
-      <category term="data structure" scheme="http://yoursite.com/tags/data%20structure/"/>
+      <category term="data structure" scheme="http://zhangxian.me/tags/data%20structure/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[由一道寻找唯一数字的题想到的]]></title>
-    <link href="http://yoursite.com/2014/06/28/find-the-special-num/"/>
-    <id>http://yoursite.com/2014/06/28/find-the-special-num/</id>
+    <link href="http://zhangxian.me/2014/06/28/find-the-special-num/"/>
+    <id>http://zhangxian.me/2014/06/28/find-the-special-num/</id>
     <published>2014-06-27T17:43:59.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<p>最近本科室友发消息来问了一道题，引发了我一连串的好奇心。</p>
@@ -371,14 +371,14 @@
     
     </summary>
     
-      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://zhangxian.me/tags/algorithm/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Damn Line End Character]]></title>
-    <link href="http://yoursite.com/2014/05/31/damn-line-end-character/"/>
-    <id>http://yoursite.com/2014/05/31/damn-line-end-character/</id>
+    <link href="http://zhangxian.me/2014/05/31/damn-line-end-character/"/>
+    <id>http://zhangxian.me/2014/05/31/damn-line-end-character/</id>
     <published>2014-05-30T18:28:15.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<p>这是在跨平台编辑代码的时候遇到的蛋疼问题。shell文件从dropbox同步到win上看一看再同步回mac，擦，执行的时候抽风了！</p>
@@ -410,14 +410,14 @@
     
     </summary>
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+      <category term="linux" scheme="http://zhangxian.me/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[ucc中的奇技淫巧（持续更新）]]></title>
-    <link href="http://yoursite.com/2014/05/23/ucc%E4%B8%AD%E7%9A%84%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"/>
-    <id>http://yoursite.com/2014/05/23/ucc中的奇技淫巧/</id>
+    <link href="http://zhangxian.me/2014/05/23/ucc%E4%B8%AD%E7%9A%84%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"/>
+    <id>http://zhangxian.me/2014/05/23/ucc中的奇技淫巧/</id>
     <published>2014-05-22T17:13:10.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<h2 id="-ucc-c98-naive-_-">对ucc——代码挺好看的一个c98编译器的naive记录...别瞎折腾，没什么用^_^</h2>
@@ -522,14 +522,14 @@
     
     </summary>
     
-      <category term="c" scheme="http://yoursite.com/tags/c/"/>
+      <category term="c" scheme="http://zhangxian.me/tags/c/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[常见的字符串Hash算法列举]]></title>
-    <link href="http://yoursite.com/2014/05/23/string%20hash%20methods/"/>
-    <id>http://yoursite.com/2014/05/23/string hash methods/</id>
+    <link href="http://zhangxian.me/2014/05/23/string%20hash%20methods/"/>
+    <id>http://zhangxian.me/2014/05/23/string hash methods/</id>
     <published>2014-05-22T16:00:01.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<p>常见的字符串Hash算法如下，ucc中对符号表使用的是ELFHash，查了一下貌似不是效果非常好的hash算法。也列一列常用的hash算法以备不时之需。
@@ -803,14 +803,14 @@
     
     </summary>
     
-      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://zhangxian.me/tags/algorithm/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[关于动态规划（DP）的一点心得]]></title>
-    <link href="http://yoursite.com/2014/05/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92_DP%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2014/05/04/动态规划_DP总结/</id>
+    <link href="http://zhangxian.me/2014/05/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92_DP%E6%80%BB%E7%BB%93/"/>
+    <id>http://zhangxian.me/2014/05/04/动态规划_DP总结/</id>
     <published>2014-05-03T16:16:35.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<h3 id="-">概述：了解动态规划</h3>
@@ -956,16 +956,16 @@ d[i] = (d[i-<span class="number">1</span>] + <span class="number">1</span> <span
     
     </summary>
     
-      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://zhangxian.me/tags/algorithm/"/>
     
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
+      <category term="DP" scheme="http://zhangxian.me/tags/DP/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Dijkstra Shortest Path]]></title>
-    <link href="http://yoursite.com/2014/05/03/dijkstra-shortest-path/"/>
-    <id>http://yoursite.com/2014/05/03/dijkstra-shortest-path/</id>
+    <link href="http://zhangxian.me/2014/05/03/dijkstra-shortest-path/"/>
+    <id>http://zhangxian.me/2014/05/03/dijkstra-shortest-path/</id>
     <published>2014-05-02T16:20:35.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<h3 id="-">五一要过去了，这个学期真是快</h3>
@@ -1222,14 +1222,14 @@ BOOL isInS[<span class="number">5</span>] = {FALSE};
     
     </summary>
     
-      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://zhangxian.me/tags/algorithm/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[总结&计划]]></title>
-    <link href="http://yoursite.com/2014/02/23/second-semester-plan/"/>
-    <id>http://yoursite.com/2014/02/23/second-semester-plan/</id>
+    <link href="http://zhangxian.me/2014/02/23/second-semester-plan/"/>
+    <id>http://zhangxian.me/2014/02/23/second-semester-plan/</id>
     <published>2014-02-23T10:10:47.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<h2 id="-">上学期总结和下学期规划一览</h2>
@@ -1271,14 +1271,14 @@ BOOL isInS[<span class="number">5</span>] = {FALSE};
     
     </summary>
     
-      <category term="personal" scheme="http://yoursite.com/tags/personal/"/>
+      <category term="personal" scheme="http://zhangxian.me/tags/personal/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <link href="http://yoursite.com/2014/02/23/hello-world/"/>
-    <id>http://yoursite.com/2014/02/23/hello-world/</id>
+    <link href="http://zhangxian.me/2014/02/23/hello-world/"/>
+    <id>http://zhangxian.me/2014/02/23/hello-world/</id>
     <published>2014-02-23T09:13:11.000Z</published>
     <updated>2014-09-22T08:54:45.000Z</updated>
     <content type="html"><![CDATA[<p>最近有点时间想来搞一下自己的博客，原来的博客在cnblogs上，基本上没兴趣写啊。wordpress太重了，随着github pages这样的机制越来越顺手，还是弄一个纯静态的博客吧，简单易用靠谱，简单调查一下，还是用hexo吧，使用部署很简单，插件也多。寝室的网络太差，看在不要钱的份儿上就不吐槽了，装个node下了半天，擦~</p>
