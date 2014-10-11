@@ -1,334 +1,222 @@
-<!DOCTYPE HTML>
-<html>
+
+  <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>algorithm | reallocvoid</title>
-  <meta name="author" content="xuangong">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  
-  <meta property="og:site_name" content="reallocvoid"/>
-
-  
-    <meta property="og:image" content="undefined"/>
-  
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="reallocvoid" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
-
+    <title>Tag: algorithm | zhangxian&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="xuangong">
+    
+    
+    
+    
+    <link rel="alternate" href="/atom/xml## RSS address." title="zhangxian&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">reallocvoid</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">algorithm</h2>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-30T16:53:43.000Z"><a href="/2014/07/01/skiplist/">7月 1 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/07/01/skiplist/">理解跳跃表skiplist</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <blockquote>
-<p>跳跃表是一种随机化数据结构，基于<strong>并联的链表</strong>，其效率可以逼近二叉查找树，对于大多数操作需要O(logn)平均时间，并且对<strong>并发</strong>算法友好。
-跳跃表对<strong>有序</strong>链表增加附加的前进链接，增加（Insert）是以随机化的方式进行的，所以可以快速的跳过部分列表，故以此得名。
-她是很年轻的算法而且实现简单，深受广大程序员喜爱。</p>
-</blockquote>
-<p>需要动态维护数据，有对数复杂度的插入、删除和查找性能，可以选择的数据结构很多，比如：</p>
-<ul>
-<li>B-tree</li>
-<li>Red-black tree</li>
-<li>treap</li>
-</ul>
-<p>如果要求一个小时完成程序，竟然还不给我们翻书，那咱们选择谁呢？OK，答案是我们今天的主人公：跳跃表skiplist</p>
-<p>跳跃表按层构造的，让我们看一下redis中跳跃表的数据结构(<a href="http://github.com/antirez/redis/blob/unstable/src/redis.h" target="_blank">redis.h</a>)：
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/07/01/skiplist/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-27T17:43:59.000Z"><a href="/2014/06/28/find-the-special-num/">6月 28 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/06/28/find-the-special-num/">由一道寻找唯一数字的题想到的</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>最近本科室友发消息来问了一道题，引发了我一连串的好奇心。</p>
-<p>P.S. 据师兄说这类问题貌似某书上有说过，可是已经不记得了，汗。。只怪肚子里的墨水太少，事实证明我这种庸人就应该事儿多^_^！</p>
-<h3 id="1-">1.有很多数字，其中两两一样，只有一个数字不同，找出这个数字？</h3>
-<hr>
-<p>可以把让每个数字按位异或，最后得到的就是那个数字，这个是很基础的想法。时间复杂度O(n)，空间是O(1)，not bad.
-扩展**
-2.如果有两个数字是唯一的，怎么找出这两个数字？</p>
-<hr>
-<p>处理两遍，第一遍先按位异或，最后肯定得到的是一个不为零的数字，然后按照一个不为零的bit来划分所有的整数，得到两个集合，每个集合都符合<strong>第1题</strong>的情况，分别对两个集合处理，就能找到这两个数字。
-继续扩展**
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/06/28/find-the-special-num/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-05-22T16:00:01.000Z"><a href="/2014/05/23/string hash methods/">5月 23 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/05/23/string hash methods/">常见的字符串Hash算法列举</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>常见的字符串Hash算法如下，ucc中对符号表使用的是ELFHash，查了一下貌似不是效果非常好的hash算法。也列一列常用的hash算法以备不时之需。
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/05/23/string hash methods/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-05-03T16:16:35.000Z"><a href="/2014/05/04/动态规划_DP总结/">5月 4 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/05/04/动态规划_DP总结/">关于动态规划（DP）的一点心得</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="-">概述：了解动态规划</h3>
-<hr>
-<p>动态规划算法一般都是基于一个递推公式和一组初始状态，当前子问题解将由上一次子问题的解推出，也就是传说中的（全局最优解包含局部最优解）一般用DP求解一个问题只需要多项式时间复杂度，因此要比回溯法和暴力求解法要快很多。</p>
-<p>所以：我们需要求解一个状态的最优解，然后在它的帮助下找到下一个状态的最优解（注意这里是帮助，推出下一个状态的最优解，不一定依靠一个子问题的最优解，可能是一组状态的最优解进行筛选）
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/05/04/动态规划_DP总结/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-05-02T16:20:35.000Z"><a href="/2014/05/03/dijkstra-shortest-path/">5月 3 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/05/03/dijkstra-shortest-path/">Dijkstra Shortest Path</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="-">五一要过去了，这个学期真是快</h3>
-<hr>
-<p>没回家，没出去玩儿，没什么要紧的事情要做，又比较懒，啥都不想干，闲的无聊，随手撸一个最短路径，好久没写过算法问题了，还得找一下数据结构的书来看一下。ok，合上书，整理一下思路，开始撸。。。</p>
-<p>用邻接表和邻接矩阵都行，简单点就矩阵吧，我们假设就5个节点找一下单源最短路径问题。</p>
-<p>想法非常简单，关键的地方就在于更新当前最短的距离，其实小心点很容易。</p>
-<p>分析过程是：</p>
-<ul>
-<li><p>单步的增加搜索的范围，每次都能确定对一个点的最短路径，因为在当前步数范围内全局最短的那个节点，是不可能通过增加步数绕道缩短距离的。</p>
-</li>
-<li><p>每一步中，选出当前全局最短的节点加入S集合，表明该节点的最短路径已经找到。并且，更新各个节点的最短距离（更新时比较通过当前选出的节点到达的路径，因为考虑再扩大一步以后，固定下一个最短距离的路径肯定要是<code>节点本身到源点的直接路径或者通过已经在S集合中的点到达的路径</code>）</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/05/03/dijkstra-shortest-path/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
-
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:zhangxian.me">
-  </form>
+    <body>
+      <header>
+        <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="zhangxian&#39;s blog" title="zhangxian&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="zhangxian&#39;s blog">zhangxian&#39;s blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="www.about.me/zhangxian">AboutMe</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:zhangxian.me">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
 </div>
 
-  
+      </header>
+      <div id="container">
+        
 
+<div class="archive-title" >
+  <h2 class="tag-icon">algorithm</h2>
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/DP/">DP</a><small>1</small></li>
-  
-    <li><a href="/tags/algorithm/">algorithm</a><small>5</small></li>
-  
-    <li><a href="/tags/c/">c</a><small>1</small></li>
-  
-    <li><a href="/tags/data structure/">data structure</a><small>1</small></li>
-  
-    <li><a href="/tags/linux/">linux</a><small>1</small></li>
-  
-    <li><a href="/tags/personal/">personal</a><small>1</small></li>
-  
-    <li><a href="/tags/protocol/">protocol</a><small>1</small></li>
-  
-  </ul>
 </div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
-</aside>
-    <div class="clearfix"></div>
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/07/01/skiplist/" title="理解跳跃表skiplist" itemprop="url">
+  
+    <h1 itemprop="name">理解跳跃表skiplist</h1>
+    
+    <time datetime="2014-06-30T16:53:43.000Z" itemprop="datePublished">7月 1 2014</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/06/28/find-the-special-num/" title="由一道寻找唯一数字的题想到的" itemprop="url">
+  
+    <h1 itemprop="name">由一道寻找唯一数字的题想到的</h1>
+    
+    <time datetime="2014-06-27T17:43:59.000Z" itemprop="datePublished">6月 28 2014</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/05/23/string hash methods/" title="常见的字符串Hash算法列举" itemprop="url">
+  
+    <h1 itemprop="name">常见的字符串Hash算法列举</h1>
+    
+    <time datetime="2014-05-22T16:00:01.000Z" itemprop="datePublished">5月 23 2014</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/05/04/动态规划_DP总结/" title="关于动态规划（DP）的一点心得" itemprop="url">
+  
+    <h1 itemprop="name">关于动态规划（DP）的一点心得</h1>
+    
+    <time datetime="2014-05-03T16:16:35.000Z" itemprop="datePublished">5月 4 2014</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2014/05/03/dijkstra-shortest-path/" title="Dijkstra Shortest Path" itemprop="url">
+  
+    <h1 itemprop="name">Dijkstra Shortest Path</h1>
+    
+    <time datetime="2014-05-02T16:20:35.000Z" itemprop="datePublished">5月 3 2014</time>
+  </a>
+</section>
+
+
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2014 xuangong
-  
 </div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
 
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+      </div>
+      <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Do you know who is SBest teacher in BUPT? <br/>
+			This is my blog, believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1886473775" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/xuangong" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://zhangxian.me" target="_blank" title="xuangong">xuangong</a>
+		
+		</p>
+</div>
+</footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
 </script>
 
-</body>
-</html>
+
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-52996880-1', 'http://xuangong.github.io');  
+ga('send', 'pageview');
+</script>
+
+
+    </body>
+   </html>
