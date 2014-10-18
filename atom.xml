@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://zhangxian.me/"/>
-  <updated>2014-10-18T06:01:24.949Z</updated>
+  <updated>2014-10-18T06:51:54.107Z</updated>
   <id>http://zhangxian.me/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://zhangxian.me/2014/07/09/simulate-smtp/"/>
     <id>http://zhangxian.me/2014/07/09/simulate-smtp/</id>
     <published>2014-07-09T02:41:19.000Z</published>
-    <updated>2014-10-11T14:02:19.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<p>动手写邮件发送的程序之前，第一步让我们来模拟一下smtp协议的过程来发送一份邮件。</p>
 <p>下面简单演示一下如何用telnet来模拟smtp协议发送一份邮件</p>
 <ol>
@@ -70,7 +70,7 @@
     <link href="http://zhangxian.me/2014/07/01/skiplist/"/>
     <id>http://zhangxian.me/2014/07/01/skiplist/</id>
     <published>2014-06-30T16:53:43.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>跳跃表是一种随机化数据结构，基于<strong>并联的链表</strong>，其效率可以逼近二叉查找树，对于大多数操作需要O(logn)平均时间，并且对<strong>并发</strong>算法友好。
 跳跃表对<strong>有序</strong>链表增加附加的前进链接，增加（Insert）是以随机化的方式进行的，所以可以快速的跳过部分列表，故以此得名。
@@ -192,11 +192,11 @@
         rank[i] = i == (zsl-&gt;level-<span class="number">1</span>) ? <span class="number">0</span> : rank[i+<span class="number">1</span>];
 
         <span class="comment">// 右节点不为空</span>
-        <span class="keyword">while</span> (x-&gt;level[i].forward &amp;&amp;                   
+        <span class="keyword">while</span> (x-&gt;level[i].forward &amp;&amp;
             <span class="comment">// 右节点的 score 比给定 score 小</span>
-            (x-&gt;level[i].forward-&gt;score &lt; score ||      
+            (x-&gt;level[i].forward-&gt;score &lt; score ||
                 <span class="comment">// 右节点的 score 相同，但节点的 member 比输入 member 要小</span>
-                (x-&gt;level[i].forward-&gt;score == score &amp;&amp; 
+                (x-&gt;level[i].forward-&gt;score == score &amp;&amp;
                 compareStringObjects(x-&gt;level[i].forward-&gt;obj,obj) &lt; <span class="number">0</span>))) {
             <span class="comment">// 记录跨越了多少个元素</span>
             rank[i] += x-&gt;level[i].span;
@@ -268,7 +268,7 @@
     <link href="http://zhangxian.me/2014/06/28/find-the-special-num/"/>
     <id>http://zhangxian.me/2014/06/28/find-the-special-num/</id>
     <published>2014-06-27T17:43:59.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<p>最近本科室友发消息来问了一道题，引发了我一连串的好奇心。</p>
 <p>P.S. 据师兄说这类问题貌似某书上有说过，可是已经不记得了，汗。。只怪肚子里的墨水太少，事实证明我这种庸人就应该事儿多^_^！</p>
 <h3 id="1-">1.有很多数字，其中两两一样，只有一个数字不同，找出这个数字？</h3>
@@ -379,7 +379,7 @@
     <link href="http://zhangxian.me/2014/05/31/damn-line-end-character/"/>
     <id>http://zhangxian.me/2014/05/31/damn-line-end-character/</id>
     <published>2014-05-30T18:28:15.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<p>这是在跨平台编辑代码的时候遇到的蛋疼问题。shell文件从dropbox同步到win上看一看再同步回mac，擦，执行的时候抽风了！</p>
 <p>作为一个无知且不天真的低级码农，碰到这个诡异的问题不能忍，搞清楚了记一下。</p>
 <p>vim认为win、unix和mac三大平台的换行符都不一样，分别是CRLF、LF和CR。尼玛，这个排列组合能再彻底一点吗？当然这个有历史原因，不过还是要说，尼玛！
@@ -418,7 +418,7 @@
     <link href="http://zhangxian.me/2014/05/23/ucc%E4%B8%AD%E7%9A%84%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"/>
     <id>http://zhangxian.me/2014/05/23/ucc中的奇技淫巧/</id>
     <published>2014-05-22T17:13:10.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<h2 id="-ucc-c98-naive-_-">对ucc——代码挺好看的一个c98编译器的naive记录...别瞎折腾，没什么用^_^</h2>
 <h3 id="1-enum-">1.初始化寄存器变量的时候，寄存器是用enum类型来表示的:</h3>
 <hr>
@@ -530,7 +530,7 @@
     <link href="http://zhangxian.me/2014/05/23/string%20hash%20methods/"/>
     <id>http://zhangxian.me/2014/05/23/string hash methods/</id>
     <published>2014-05-22T16:00:01.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<p>常见的字符串Hash算法如下，ucc中对符号表使用的是ELFHash，查了一下貌似不是效果非常好的hash算法。也列一列常用的hash算法以备不时之需。
 <a id="more"></a></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre>1
@@ -811,7 +811,7 @@
     <link href="http://zhangxian.me/2014/05/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92_DP%E6%80%BB%E7%BB%93/"/>
     <id>http://zhangxian.me/2014/05/04/动态规划_DP总结/</id>
     <published>2014-05-03T16:16:35.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<h3 id="-">概述：了解动态规划</h3>
 <hr>
 <p>动态规划算法一般都是基于一个递推公式和一组初始状态，当前子问题解将由上一次子问题的解推出，也就是传说中的（全局最优解包含局部最优解）一般用DP求解一个问题只需要多项式时间复杂度，因此要比回溯法和暴力求解法要快很多。</p>
@@ -966,7 +966,7 @@ d[i] = (d[i-<span class="number">1</span>] + <span class="number">1</span> <span
     <link href="http://zhangxian.me/2014/05/03/dijkstra-shortest-path/"/>
     <id>http://zhangxian.me/2014/05/03/dijkstra-shortest-path/</id>
     <published>2014-05-02T16:20:35.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<h3 id="-">五一要过去了，这个学期真是快</h3>
 <hr>
 <p>没回家，没出去玩儿，没什么要紧的事情要做，又比较懒，啥都不想干，闲的无聊，随手撸一个最短路径，好久没写过算法问题了，还得找一下数据结构的书来看一下。ok，合上书，整理一下思路，开始撸。。。</p>
@@ -1140,10 +1140,10 @@ BOOL isInS[<span class="number">5</span>] = {FALSE};
 	}
 	<span class="comment">//set a mark of startVetex</span>
 	pathpre[startVertex] = -<span class="number">1</span>;
-	
+
 	<span class="comment">//startVertex is in the S collection at the very beginning</span>
 	isInS[startVertex] = TRUE;
-	
+
 	<span class="comment">//need these many rounds to calculate the correct answer</span>
 	<span class="keyword">for</span> (<span class="keyword">int</span> round = <span class="number">0</span>; round &lt; numVertex - <span class="number">1</span>; ++round)
 	{
@@ -1157,7 +1157,7 @@ BOOL isInS[<span class="number">5</span>] = {FALSE};
 				preVertex = i;
 			}
 		}
-		
+
 		<span class="comment">//set the selected one into S collection</span>
 		isInS[preVertex] = TRUE;
 
@@ -1183,7 +1183,7 @@ BOOL isInS[<span class="number">5</span>] = {FALSE};
 		<span class="comment">//works just like a poor and low stack</span>
 		<span class="keyword">int</span> idx = i;
 		<span class="keyword">int</span> id = <span class="number">0</span>;
-		<span class="keyword">do</span> 
+		<span class="keyword">do</span>
 		{
 			path[id] = idx;
 			idx = pathpre[idx];
@@ -1197,7 +1197,7 @@ BOOL isInS[<span class="number">5</span>] = {FALSE};
 		}
 		<span class="comment">//end of poor and low stack</span>
 		<span class="built_in">printf</span>(<span class="string">"length is %d\n"</span>, distence[i]);
-	}	
+	}
 
 	<span class="keyword">return</span> <span class="number">0</span>;
 }
@@ -1230,7 +1230,7 @@ BOOL isInS[<span class="number">5</span>] = {FALSE};
     <link href="http://zhangxian.me/2014/02/23/second-semester-plan/"/>
     <id>http://zhangxian.me/2014/02/23/second-semester-plan/</id>
     <published>2014-02-23T10:10:47.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<h2 id="-">上学期总结和下学期规划一览</h2>
 <h3 id="-">入学</h3>
 <p>考研的分数不是太高，只能勉强过组线，所以提前不少时间就开始准备联系导师和准备复试了，基本上每个老师都发了简历，但是不是每个老师都回了。<del>感谢那些亲自回学生邮件并给出中肯建议的老师们，怀念方SIR回邮件的速度</del>
@@ -1279,7 +1279,7 @@ BOOL isInS[<span class="number">5</span>] = {FALSE};
     <link href="http://zhangxian.me/2014/02/23/hello-world/"/>
     <id>http://zhangxian.me/2014/02/23/hello-world/</id>
     <published>2014-02-23T09:13:11.000Z</published>
-    <updated>2014-09-22T08:54:45.000Z</updated>
+    <updated>2014-10-18T06:50:37.000Z</updated>
     <content type="html"><![CDATA[<p>最近有点时间想来搞一下自己的博客，原来的博客在cnblogs上，基本上没兴趣写啊。wordpress太重了，随着github pages这样的机制越来越顺手，还是弄一个纯静态的博客吧，简单易用靠谱，简单调查一下，还是用hexo吧，使用部署很简单，插件也多。寝室的网络太差，看在不要钱的份儿上就不吐槽了，装个node下了半天，擦~</p>
 <p>神奇的<em><code>hello world</code></em>闪亮登场，噹噹噹噹！</p>
 <p>能用markdown写博客，舒服好多，赶紧用上Mou，神器就是神奇，写这段文字的时候激动的泪流满面啊！</p>
