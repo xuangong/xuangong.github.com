@@ -408,7 +408,6 @@ body >header >div {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-  vertical-align: middle;
 }
 @media only screen and (min-width: 1024px) {
   body >header >div {
@@ -423,6 +422,7 @@ body >header a {
   float: left;
   width: 4em;
   height: 4em;
+  margin: auto;
 }
 @media only screen and (min-width: 768px) {
   #imglogo {
@@ -451,9 +451,6 @@ body >header a {
   float: left;
   width: 75%;
   margin-left: 1em;
-}
-#textlogo a {
-    vertical-align: middle;
 }
 #textlogo h1.site-name {
   width: 86%;
