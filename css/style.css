@@ -397,7 +397,7 @@ body >header {
   box-shadow: 2px 4px 5px rgba(3,3,3,0.2);
   background: #0a0b0c;
   color: #fff;
-  padding: 1em 0 0.8em;
+  padding: 0px;
 }
 @media only screen and (min-width: 1024px) {
   body >header {
