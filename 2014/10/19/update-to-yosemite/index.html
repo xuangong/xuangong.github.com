@@ -9,13 +9,13 @@
     
     <meta name="author" content="xuangong">
     
-    <meta name="description" content="Yosemite正式版发布以后，5G的安装包升级了，记录一下升级的问题和注意事项：
+    <meta name="description" content="Yosemite正式版发布以后，升级断断续续花了两天，记录一下升级的问题和注意事项：
 备份
 备份不一定可以找一个移动硬盘，Time Machine可以选择备份哪些资料，比如Downloads这种巨大又没太大用的目录就不要备份了，占硬盘还慢。
 安装完成
 没来及享受新系统带来的欣喜，发现问题了：
 
-bre">
+br">
     
     
     
@@ -95,7 +95,7 @@ var _hmt = _hmt || [];
     </p>
   <p class="article-time">
     <time datetime="2014-10-19T07:55:42.000Z" itemprop="datePublished">10月 19 2014</time>
-    更新日期:<time datetime="2014-10-20T11:04:10.000Z" itemprop="dateModified">10月 20 2014</time>
+    更新日期:<time datetime="2014-10-20T11:41:23.000Z" itemprop="dateModified">10月 20 2014</time>
     
   </p>
 </header>
@@ -104,13 +104,13 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">2.</span> <span class="toc-text">安装完成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">3.</span> <span class="toc-text">设置出错</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-apache-virtual-host-"><span class="toc-number">3.0.1.</span> <span class="toc-text">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-extension-"><span class="toc-number">3.0.2.</span> <span class="toc-text">到apache的配置文件重新更改extension的路径：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spotlight"><span class="toc-number">3.0.3.</span> <span class="toc-text">Spotlight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-"><span class="toc-number">3.0.4.</span> <span class="toc-text">提示一下小技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enjoy"><span class="toc-number">3.0.5.</span> <span class="toc-text">Enjoy</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#-"><span class="toc-number">1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-"><span class="toc-number">2.</span> <span class="toc-text">安装完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-"><span class="toc-number">3.</span> <span class="toc-text">设置出错</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-apache-virtual-host-"><span class="toc-number">3.1.</span> <span class="toc-text">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-extension-"><span class="toc-number">3.2.</span> <span class="toc-text">到apache的配置文件重新更改extension的路径：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spotlight"><span class="toc-number">3.3.</span> <span class="toc-text">Spotlight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-"><span class="toc-number">3.4.</span> <span class="toc-text">提示一下小技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enjoy"><span class="toc-number">3.5.</span> <span class="toc-text">Enjoy</span></a></li></ol>
 		</div>
 		
-		<p>Yosemite正式版发布以后，5G的安装包升级了，记录一下升级的问题和注意事项：</p>
-<h1 id="-">备份</h1>
+		<p>Yosemite正式版发布以后，升级断断续续花了两天，记录一下升级的问题和注意事项：</p>
+<h2 id="-">备份</h2>
 <p>备份不一定可以找一个移动硬盘，Time Machine可以选择备份哪些资料，比如Downloads这种巨大又没太大用的目录就不要备份了，占硬盘还慢。</p>
-<h1 id="-">安装完成</h1>
+<h2 id="-">安装完成</h2>
 <p>没来及享受新系统带来的欣喜，发现问题了：</p>
 <ol>
 <li>brew出问题了，运行brew运行出错<ul>
@@ -131,7 +131,7 @@ var _hmt = _hmt || [];
 </li>
 <li><code>java -version</code>提示更新java，更新就是了。</li>
 </ol>
-<h1 id="-">设置出错</h1>
+<h2 id="-">设置出错</h2>
 <h3 id="-apache-apache-virtual-host-">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</h3>
 <p>检查了virtual host的端口已经启来了，document root的读写权限apache的User(_www)也都有。</p>
 <p>解决办法：<code>vi /etc/apache2/extra/httpd-vhosts.conf</code></p>
@@ -162,8 +162,8 @@ var _hmt = _hmt || [];
     <span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/Users/zhangxian/darwin"</span>
     <span class="keyword"><span class="common">ServerName</span></span> localhost
     <span class="keyword">ServerAlias</span> reallocvoid.com
-    <span class="keyword">ErrorLog</span> <span class="string">"/private/var/log/apache2/darwin-error_log"</span>
-    <span class="keyword">CustomLog</span> <span class="string">"/private/var/log/apache2/darwin-access_log"</span> common
+    <span class="keyword">ErrorLog</span> <span class="string">"/tmp/log/apache2/darwin-error_log"</span>
+    <span class="keyword">CustomLog</span> <span class="string">"/tmp/log/apache2/darwin-access_log"</span> common
 
     <span class="tag">&lt;Directory "/Users/zhangxian/darwin"&gt;</span>
         <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks MultiViews
@@ -194,10 +194,10 @@ var _hmt = _hmt || [];
 <h3 id="enjoy">Enjoy</h3>
 <ul>
 <li>手机升级到ios8以后，手机和电脑在一个局域网中就可以实现在电脑上接电话，也可以让手机连接电脑分享出来的热点。<del>我决不抱怨屌丝北邮上网终端限制太蛋疼</del></li>
-<li>handoff，只要手机和电脑蓝牙连接起来，就可以实现了，现在只有apple自家的程序支持，我的Wunderlist?Day one?Skype?QQ?We chat?他们还需要时间。</li>
-<li>大赞升级以后iterm2全盘的改变，热键把iterm2切出来的时候干嘛每次要那么多过场动画，就现在这样在当前的space全屏多nice，喜欢透明背景的童鞋还能装装B。</li>
+<li>handoff，只要手机和电脑蓝牙连接起来，就可以实现了，现在只有apple自家的程序支持，我的Wunderlist? Day one? Skype? QQ? We chat? 他们还需要时间。</li>
+<li>大赞升级以后iterm2全屏的改变，热键把iterm2切出来的时候干嘛每次要那么多过场动画，就现在这样在当前的space全屏多nice，喜欢透明背景的童鞋还能装装B。</li>
 <li>ParallelDesktop 9是不能用的，需要升级到Desktop 10。</li>
-<li>看起来比原来要舒服，过去会偶尔无法进入MissionControl界面，现在改善了。</li>
+<li>看起来比原来要舒服，过去会偶尔无法进入MissionControl界面，现在改善了，而且切换space比原来反应快。</li>
 <li>新的通知栏和Safari的改进，确实很棒，解决了蛋疼的问题，谁用谁知道。</li>
 </ul>
   
@@ -262,7 +262,7 @@ var _hmt = _hmt || [];
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">2.</span> <span class="toc-text">安装完成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">3.</span> <span class="toc-text">设置出错</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-apache-virtual-host-"><span class="toc-number">3.0.1.</span> <span class="toc-text">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-extension-"><span class="toc-number">3.0.2.</span> <span class="toc-text">到apache的配置文件重新更改extension的路径：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spotlight"><span class="toc-number">3.0.3.</span> <span class="toc-text">Spotlight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-"><span class="toc-number">3.0.4.</span> <span class="toc-text">提示一下小技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enjoy"><span class="toc-number">3.0.5.</span> <span class="toc-text">Enjoy</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#-"><span class="toc-number">1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-"><span class="toc-number">2.</span> <span class="toc-text">安装完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-"><span class="toc-number">3.</span> <span class="toc-text">设置出错</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-apache-virtual-host-"><span class="toc-number">3.1.</span> <span class="toc-text">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-extension-"><span class="toc-number">3.2.</span> <span class="toc-text">到apache的配置文件重新更改extension的路径：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spotlight"><span class="toc-number">3.3.</span> <span class="toc-text">Spotlight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-"><span class="toc-number">3.4.</span> <span class="toc-text">提示一下小技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enjoy"><span class="toc-number">3.5.</span> <span class="toc-text">Enjoy</span></a></li></ol>
   </div>
 
 <div id="asidepart">
