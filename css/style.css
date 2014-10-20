@@ -397,6 +397,7 @@ body >header {
   box-shadow: 2px 4px 5px rgba(3,3,3,0.2);
   background: #0a0b0c;
   color: #fff;
+  vertical-align: middle;
 }
 @media only screen and (min-width: 1024px) {
   body >header {
@@ -422,7 +423,6 @@ body >header a {
   float: left;
   width: 4em;
   height: 4em;
-  margin: auto;
 }
 @media only screen and (min-width: 768px) {
   #imglogo {
