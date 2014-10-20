@@ -408,6 +408,7 @@ body >header >div {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+  vertical-align: middle;
 }
 @media only screen and (min-width: 1024px) {
   body >header >div {
