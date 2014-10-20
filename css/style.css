@@ -451,6 +451,9 @@ body >header a {
   width: 75%;
   margin-left: 1em;
 }
+#textlogo a {
+    vertical-align: middle;
+}
 #textlogo h1.site-name {
   width: 86%;
   font-family: "covered_by_your_graceregular";
