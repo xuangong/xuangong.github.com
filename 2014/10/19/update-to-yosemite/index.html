@@ -1,0 +1,433 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>update-to-yosemite | 张弦的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="xuangong">
+    
+    <meta name="description" content="Yosemite正式版发布以后，5G的安装包升级了，记录一下升级的问题和注意事项：
+备份
+备份不一定可以找一个移动硬盘，Time Machine可以选择备份哪些资料，比如Downloads这种巨大又没太大用的目录就不要备份了，占硬盘还慢。
+安装完成
+没来及享受新系统带来的欣喜，发现问题了：
+
+bre">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman-114-114.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman-114-114.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?d51b4ed17101e90136392574b39a9c96";
+          var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+
+ })();
+ </script>
+
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo-300-300.png" alt="张弦的博客" title="张弦的博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="张弦的博客">张弦的博客</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="http://www.about.me/zhangxian">About</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:zhangxian.me">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/10/19/update-to-yosemite/" title="update-to-yosemite" itemprop="url">update-to-yosemite</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://zhangxian.me" title="xuangong">xuangong</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-10-19T07:55:42.000Z" itemprop="datePublished">10月 19 2014</time>
+    更新日期:<time datetime="2014-10-20T09:00:44.000Z" itemprop="dateModified">10月 20 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">2.</span> <span class="toc-text">安装完成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">3.</span> <span class="toc-text">设置出错</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-apache-virtual-host-"><span class="toc-number">3.0.1.</span> <span class="toc-text">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-extension-"><span class="toc-number">3.0.2.</span> <span class="toc-text">到apache的配置文件重新更改extension的路径：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spotlight"><span class="toc-number">3.0.3.</span> <span class="toc-text">Spotlight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-"><span class="toc-number">3.0.4.</span> <span class="toc-text">提示一下小技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enjoy"><span class="toc-number">3.0.5.</span> <span class="toc-text">Enjoy</span></a></li></ol>
+		</div>
+		
+		<p>Yosemite正式版发布以后，5G的安装包升级了，记录一下升级的问题和注意事项：</p>
+<h1 id="-">备份</h1>
+<p>备份不一定可以找一个移动硬盘，Time Machine可以选择备份哪些资料，比如Downloads这种巨大又没太大用的目录就不要备份了，占硬盘还慢。</p>
+<h1 id="-">安装完成</h1>
+<p>没来及享受新系统带来的欣喜，发现问题了：</p>
+<ol>
+<li>brew出问题了，运行brew运行出错<ul>
+<li><code>» mv /usr/local/Cellar /tmp/</code></li>
+<li><code>» ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)&quot;</code>重新安装homebrew</li>
+<li><code>» brew update</code></li>
+<li><code>» brew doctor</code>根据提示修复环境</li>
+<li><code>» brew upgrade</code></li>
+</ul>
+</li>
+<li>brew upgrade时vim报错</li>
+<li>brew upgrade时subversion报错</li>
+<li>brew upgrade时php55报错<ul>
+<li>因为执行<code>brew doctor</code>之后建议我安装xcode6.1，我没有理会导致前面三个东东编译失败。</li>
+<li>App Store里是找不到xcode6.1的，需要到这里找<a href="https://developer.apple.com/downloads/index.action" target="_blank">传送门</a>，有2.5G之巨</li>
+<li>安装xcode后, brew upgrade就妥了</li>
+</ul>
+</li>
+<li><code>java -version</code>提示更新java，更新就是了。</li>
+</ol>
+<h1 id="-">设置出错</h1>
+<h3 id="-apache-apache-virtual-host-">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</h3>
+<p>检查了virtual host的端口已经启来了，document root的读写权限apache的User(_www)也都有。</p>
+<p>解决办法：<code>vi /etc/apache2/extra/httpd-vhosts.conf</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="keyword">NameVirtualHost</span> *:8070
+<span class="tag">&lt;VirtualHost *:8070&gt;</span>
+    <span class="keyword">ServerAdmin</span> reallocvoid.com
+    <span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/Users/zhangxian/darwin"</span>
+    <span class="keyword"><span class="common">ServerName</span></span> localhost
+    <span class="keyword">ServerAlias</span> reallocvoid.com
+    <span class="keyword">ErrorLog</span> <span class="string">"/private/var/log/apache2/darwin-error_log"</span>
+    <span class="keyword">CustomLog</span> <span class="string">"/private/var/log/apache2/darwin-access_log"</span> common
+
+    <span class="tag">&lt;Directory "/Users/zhangxian/darwin"&gt;</span>
+        <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks MultiViews
+        <span class="keyword">AllowOverride</span> <span class="literal">All</span>
+        <span class="keyword"><span class="common">Order</span></span> allow,deny
+        <span class="keyword"><span class="common">Allow</span></span> from <span class="literal">all</span>
+        
+        <span class="comment">#############下方高能，罪魁祸首#############</span>
+        <span class="comment"># This sentence is needed when update to Yosemite</span>
+        <span class="keyword">Require</span> <span class="literal">all</span> granted
+    <span class="tag">&lt;/Directory&gt;</span>
+
+<span class="tag">&lt;/VirtualHost&gt;</span>
+</pre></td></tr></table></figure>
+
+<h3 id="-apache-extension-">到apache的配置文件重新更改extension的路径：</h3>
+<ul>
+<li><code>» LoadModule php5_module /usr/local/Cellar/php55/5.5.18/libexec/apache2/libphp5.so</code></li>
+<li><code>» sudo apachectl restart</code></li>
+</ul>
+<h3 id="spotlight">Spotlight</h3>
+<p>到偏好设置里把Bing Web Searches和Spotlight Suggestions速度关掉，每次用它还偷偷告诉水果和巨硬我的隐私，你妹啊！</p>
+<h3 id="-">提示一下小技巧</h3>
+<ul>
+<li>更改环境变量<code>export PATH=/usr/local/bin:$HOME/bin:$PATH</code>(注意顺序)</li>
+<li>如果使用phpstorm，在设置里面搜subversion，在use command line client栏中写: <code>/usr/local/bin/svn</code>才行，估计是调用的时候前面加了<code>\</code></li>
+</ul>
+<h3 id="enjoy">Enjoy</h3>
+<ul>
+<li>手机升级到ios8以后，手机和电脑在一个局域网中就可以实现在电脑上接电话，也可以让手机连接电脑分享出来的热点。<del>我决不抱怨屌丝北邮上网终端限制太蛋疼</del></li>
+<li>handoff，只要手机和电脑蓝牙连接起来，就可以实现了，现在只有apple自家的程序支持，我的Wunderlist?Day one?Skype?QQ?We chat?他们还需要时间。</li>
+<li>看起来比原来要舒服，过去会偶尔无法进入MissionControl界面，现在改善了。</li>
+<li>新的通知栏和Safari的改进，确实很棒，解决了蛋疼的问题，谁用谁知道。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/tools/">tools</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a class="jiathis_button_twitter">Twitter</a>
+    <a class="jiathis_button_evernote">EverNote</a>
+    <a href="http://www.jiathis.com/share?uid=1501277" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+1394791446996501" charset="utf-8"></script>      
+
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/07/09/simulate-smtp/"  title="模拟smtp协议">
+ <strong>NEXT:</strong><br/> 
+ <span>模拟smtp协议
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">1.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">2.</span> <span class="toc-text">安装完成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number">3.</span> <span class="toc-text">设置出错</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-apache-virtual-host-"><span class="toc-number">3.0.1.</span> <span class="toc-text">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-apache-extension-"><span class="toc-number">3.0.2.</span> <span class="toc-text">到apache的配置文件重新更改extension的路径：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spotlight"><span class="toc-number">3.0.3.</span> <span class="toc-text">Spotlight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-"><span class="toc-number">3.0.4.</span> <span class="toc-text">提示一下小技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#enjoy"><span class="toc-number">3.0.5.</span> <span class="toc-text">Enjoy</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/DP/" title="DP">DP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/algorithm/" title="algorithm">algorithm<sup>5</sup></a></li>
+		
+			<li><a href="/tags/c/" title="c">c<sup>1</sup></a></li>
+		
+			<li><a href="/tags/data structure/" title="data structure">data structure<sup>1</sup></a></li>
+		
+			<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+		
+			<li><a href="/tags/personal/" title="personal">personal<sup>1</sup></a></li>
+		
+			<li><a href="/tags/protocol/" title="protocol">protocol<sup>1</sup></a></li>
+		
+			<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Where there is a shell, there is a way. <br/>
+			This is my blog, believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/1886473775" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/xuangong" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://zhangxian.me" target="_blank" title="xuangong">xuangong</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"xuangong"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>

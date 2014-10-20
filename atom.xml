@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://zhangxian.me/"/>
-  <updated>2014-10-20T07:10:14.494Z</updated>
+  <updated>2014-10-20T09:01:38.225Z</updated>
   <id>http://zhangxian.me/</id>
   
   <author>
@@ -13,6 +13,114 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[update-to-yosemite]]></title>
+    <link href="http://zhangxian.me/2014/10/19/update-to-yosemite/"/>
+    <id>http://zhangxian.me/2014/10/19/update-to-yosemite/</id>
+    <published>2014-10-19T07:55:42.000Z</published>
+    <updated>2014-10-20T09:00:44.000Z</updated>
+    <content type="html"><![CDATA[<p>Yosemite正式版发布以后，5G的安装包升级了，记录一下升级的问题和注意事项：</p>
+<h1 id="-">备份</h1>
+<p>备份不一定可以找一个移动硬盘，Time Machine可以选择备份哪些资料，比如Downloads这种巨大又没太大用的目录就不要备份了，占硬盘还慢。</p>
+<h1 id="-">安装完成</h1>
+<p>没来及享受新系统带来的欣喜，发现问题了：</p>
+<ol>
+<li>brew出问题了，运行brew运行出错<ul>
+<li><code>» mv /usr/local/Cellar /tmp/</code></li>
+<li><code>» ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)&quot;</code>重新安装homebrew</li>
+<li><code>» brew update</code></li>
+<li><code>» brew doctor</code>根据提示修复环境</li>
+<li><code>» brew upgrade</code></li>
+</ul>
+</li>
+<li>brew upgrade时vim报错</li>
+<li>brew upgrade时subversion报错</li>
+<li>brew upgrade时php55报错<ul>
+<li>因为执行<code>brew doctor</code>之后建议我安装xcode6.1，我没有理会导致前面三个东东编译失败。</li>
+<li>App Store里是找不到xcode6.1的，需要到这里找<a href="https://developer.apple.com/downloads/index.action" target="_blank">传送门</a>，有2.5G之巨</li>
+<li>安装xcode后, brew upgrade就妥了</li>
+</ul>
+</li>
+<li><code>java -version</code>提示更新java，更新就是了。</li>
+</ol>
+<h1 id="-">设置出错</h1>
+<h3 id="-apache-apache-virtual-host-">因为apache是系统自带的，这回顺便也把apache给我干掉了，配好的virtual host也不行了。</h3>
+<p>检查了virtual host的端口已经启来了，document root的读写权限apache的User(_www)也都有。</p>
+<p>解决办法：<code>vi /etc/apache2/extra/httpd-vhosts.conf</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="keyword">NameVirtualHost</span> *:8070
+<span class="tag">&lt;VirtualHost *:8070&gt;</span>
+    <span class="keyword">ServerAdmin</span> reallocvoid.com
+    <span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/Users/zhangxian/darwin"</span>
+    <span class="keyword"><span class="common">ServerName</span></span> localhost
+    <span class="keyword">ServerAlias</span> reallocvoid.com
+    <span class="keyword">ErrorLog</span> <span class="string">"/private/var/log/apache2/darwin-error_log"</span>
+    <span class="keyword">CustomLog</span> <span class="string">"/private/var/log/apache2/darwin-access_log"</span> common
+
+    <span class="tag">&lt;Directory "/Users/zhangxian/darwin"&gt;</span>
+        <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks MultiViews
+        <span class="keyword">AllowOverride</span> <span class="literal">All</span>
+        <span class="keyword"><span class="common">Order</span></span> allow,deny
+        <span class="keyword"><span class="common">Allow</span></span> from <span class="literal">all</span>
+        
+        <span class="comment">#############下方高能，罪魁祸首#############</span>
+        <span class="comment"># This sentence is needed when update to Yosemite</span>
+        <span class="keyword">Require</span> <span class="literal">all</span> granted
+    <span class="tag">&lt;/Directory&gt;</span>
+
+<span class="tag">&lt;/VirtualHost&gt;</span>
+</pre></td></tr></table></figure>
+
+<h3 id="-apache-extension-">到apache的配置文件重新更改extension的路径：</h3>
+<ul>
+<li><code>» LoadModule php5_module /usr/local/Cellar/php55/5.5.18/libexec/apache2/libphp5.so</code></li>
+<li><code>» sudo apachectl restart</code></li>
+</ul>
+<h3 id="spotlight">Spotlight</h3>
+<p>到偏好设置里把Bing Web Searches和Spotlight Suggestions速度关掉，每次用它还偷偷告诉水果和巨硬我的隐私，你妹啊！</p>
+<h3 id="-">提示一下小技巧</h3>
+<ul>
+<li>更改环境变量<code>export PATH=/usr/local/bin:$HOME/bin:$PATH</code>(注意顺序)</li>
+<li>如果使用phpstorm，在设置里面搜subversion，在use command line client栏中写: <code>/usr/local/bin/svn</code>才行，估计是调用的时候前面加了<code>\</code></li>
+</ul>
+<h3 id="enjoy">Enjoy</h3>
+<ul>
+<li>手机升级到ios8以后，手机和电脑在一个局域网中就可以实现在电脑上接电话，也可以让手机连接电脑分享出来的热点。<del>我决不抱怨屌丝北邮上网终端限制太蛋疼</del></li>
+<li>handoff，只要手机和电脑蓝牙连接起来，就可以实现了，现在只有apple自家的程序支持，我的Wunderlist?Day one?Skype?QQ?We chat?他们还需要时间。</li>
+<li>看起来比原来要舒服，过去会偶尔无法进入MissionControl界面，现在改善了。</li>
+<li>新的通知栏和Safari的改进，确实很棒，解决了蛋疼的问题，谁用谁知道。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Yosemite正式版发布以后，5G的安装包升级了，记录一下升级的问题和注意事项：</p>
+<h1 id="-">备份</h1>
+<p>备份不一定可以找一个移动硬盘，Time Machine可以选择备份哪些资料，比如Downloads这种巨大又没太大用的目录就不要备份了，占]]>
+    </summary>
+    
+      <category term="tools" scheme="http://zhangxian.me/tags/tools/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[模拟smtp协议]]></title>
