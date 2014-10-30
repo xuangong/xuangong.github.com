@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://zhangxian.me/"/>
-  <updated>2014-10-20T11:41:38.554Z</updated>
+  <updated>2014-10-30T08:33:52.855Z</updated>
   <id>http://zhangxian.me/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://zhangxian.me/2014/10/19/update-to-yosemite/"/>
     <id>http://zhangxian.me/2014/10/19/update-to-yosemite/</id>
     <published>2014-10-19T07:55:42.000Z</published>
-    <updated>2014-10-20T11:41:23.000Z</updated>
+    <updated>2014-10-30T08:32:33.000Z</updated>
     <content type="html"><![CDATA[<p>Yosemite正式版发布以后，升级断断续续花了两天，记录一下升级的问题和注意事项：</p>
 <h2 id="-">备份</h2>
 <p>备份不一定可以找一个移动硬盘，Time Machine可以选择备份哪些资料，比如Downloads这种巨大又没太大用的目录就不要备份了，占硬盘还慢。</p>
@@ -39,7 +39,7 @@
 <li>brew upgrade时php55报错<ul>
 <li>因为执行<code>brew doctor</code>之后建议我安装xcode6.1，我没有理会导致前面三个东东编译失败。</li>
 <li>App Store里是找不到xcode6.1的，需要到这里找<a href="https://developer.apple.com/downloads/index.action" target="_blank">传送门</a>，有2.5G之巨</li>
-<li>安装xcode后, brew upgrade就妥了</li>
+<li>安装xcode后, 安装xcode命令行工具，<code>xcode-select install &amp;&amp; brew upgrade</code>就妥了</li>
 </ul>
 </li>
 <li><code>java -version</code>提示更新java，更新就是了。</li>
@@ -102,7 +102,7 @@
 <h3 id="-">提示一下小技巧</h3>
 <ul>
 <li>更改环境变量<code>export PATH=/usr/local/bin:$HOME/bin:$PATH</code>(注意顺序)</li>
-<li>如果使用phpstorm，在设置里面搜subversion，在use command line client栏中写: <code>/usr/local/bin/svn</code>才行，估计是调用的时候前面加了<code>\</code></li>
+<li>如果使用phpstorm，在设置里面搜subversion，用命令行checkout以后再从已经存在的目录新建工程，就会svn报错，估计是svn使用的格式版本不对吧，把工程删掉用phpstorm的svn重新checkout一遍即可。</li>
 </ul>
 <h3 id="enjoy">Enjoy</h3>
 <ul>
