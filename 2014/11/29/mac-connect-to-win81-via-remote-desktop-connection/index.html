@@ -91,7 +91,7 @@ var _hmt = _hmt || [];
     </p>
   <p class="article-time">
     <time datetime="2014-11-29T08:44:58.000Z" itemprop="datePublished">11月 29 2014</time>
-    更新日期:<time datetime="2014-11-29T09:13:16.000Z" itemprop="dateModified">11月 29 2014</time>
+    更新日期:<time datetime="2014-11-29T09:15:39.000Z" itemprop="dateModified">11月 29 2014</time>
     
   </p>
 </header>
@@ -100,15 +100,15 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mac-win8-1-remote-desktop-connection-"><span class="toc-number">1.</span> <span class="toc-text">Mac连接win8.1 Remote Desktop Connection问题修复</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mac-win8-1-remote-desktop-connection-"><span class="toc-number">1.</span> <span class="toc-text">Mac连接win8.1 Remote Desktop Connection问题修复</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number"></span> <span class="toc-text">软件和系统版本：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number"></span> <span class="toc-text">修复方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number"></span> <span class="toc-text">舒口气</span></a></li></ol>
 		</div>
 		
 		<h2 id="mac-win8-1-remote-desktop-connection-">Mac连接win8.1 Remote Desktop Connection问题修复</h2>
 <blockquote>
-<p>&quot;Remote Desktop Connection cannot verify the identity of the computer that you want to connect to.&quot;
-不过是windows升级到8.1，Mac端Remote Desktop Connection就没法成功远程windows桌面，连接时提示个这，影响生活啊！</p>
+<p>&quot;Remote Desktop Connection cannot verify the identity of the computer that you want to connect to.&quot;</p>
 </blockquote>
-<p>软件和系统版本：</p>
+<p>不过是windows升级到8.1，Mac端Remote Desktop Connection就没法成功远程windows桌面，连接时提示个这，影响生活啊！</p>
+<h1 id="-">软件和系统版本：</h1>
 <ul>
 <li>windows8.1</li>
 <li>Yomemite</li>
@@ -120,7 +120,8 @@ var _hmt = _hmt || [];
 <li>在防火墙关掉的情况下，win8.1还是把RDC的远程桌面请求给拒绝了，也就是报错信息说的感觉。</li>
 </ol>
 <p>找了半天终于翻出别人的一个靠谱解决方法，点击<a href="https://social.technet.microsoft.com/Forums/windows/en-US/0b865c92-5e0b-4518-9092-790aed895f5b/remote-desktop-connection-for-mac-os-x-cannot-connect-to-windows-81" target="_blank">这里</a>查看原帖。</p>
-<p>我的windows是中文系统，下面把方法说明一下方便遇到问题的windows中文系统的同学们查看：</p>
+<p>我的windows是中文系统，下面把方法说明一下方便遇到问题的windows中文系统的同学们查看。</p>
+<h1 id="-">修复方法</h1>
 <ol>
 <li>首先要保证防火墙是可以允许RDP连接的。<del>我极端的关掉它这种做法不推荐</del></li>
 <li>打开控制台，<strong>mmc.exe</strong></li>
@@ -134,10 +135,16 @@ var _hmt = _hmt || [];
 </ol>
 <p>打完这套组合拳，重启下远程桌面连接的服务就好了：
 <code>右击 计算机</code>-&gt;<code>管理</code>-&gt;<code>服务和应用程序</code>-&gt;<code>服务</code>，找到<strong>Remote Desktop Services</strong>右击-&gt;重新启动</p>
+<h1 id="-">舒口气</h1>
 <p>现在Mac用可以用Remote Desktop Connection连接上windows8.1了，丝的使用感受又回来了。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/tools/">tools</a>
+  </div>
 
 
 
@@ -192,7 +199,7 @@ var _hmt = _hmt || [];
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mac-win8-1-remote-desktop-connection-"><span class="toc-number">1.</span> <span class="toc-text">Mac连接win8.1 Remote Desktop Connection问题修复</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mac-win8-1-remote-desktop-connection-"><span class="toc-number">1.</span> <span class="toc-text">Mac连接win8.1 Remote Desktop Connection问题修复</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number"></span> <span class="toc-text">软件和系统版本：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number"></span> <span class="toc-text">修复方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-"><span class="toc-number"></span> <span class="toc-text">舒口气</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -220,7 +227,7 @@ var _hmt = _hmt || [];
 		
 			<li><a href="/tags/protocol/" title="protocol">protocol<sup>1</sup></a></li>
 		
-			<li><a href="/tags/tools/" title="tools">tools<sup>1</sup></a></li>
+			<li><a href="/tags/tools/" title="tools">tools<sup>2</sup></a></li>
 		
 		</ul>
 </div>
